@@ -50,7 +50,7 @@ After a lot of parameter tweaking, I found that the following parameters worked 
 - Max line gap = 100
 
 Applying the algorithm with these parameter settings, the following image is produced:\
-![Default Image][hough_image]
+![Default Image][hough_image]\
 This means that we are able to detect the lane lines with a pretty good accuracy.
 The issues is still that on the left side, only part of the lane line is detected.
 Hopefully, we can use the slope information to extrapolate the lane lines later.
