@@ -23,22 +23,22 @@ My pipeline is fairly similar to what was presented to us during the lectures.
 
 To make it very clear, I will walk you through an example image to better portray what happens during each step of the pipeline. 
 The image I will use is the following: \
-![Default Image][default_image]
+<img src="writeup/solidWhiteRight.jpg" width="400">
 
 I start off with converting the incoming image to grayscale, since apart from the color white, we do not really need much color information and it makes the computations faster.
 We now obtain the following output:\
-![Default Image][gray_image]
+<img src="writeup/solidWhiteRight_gray.jpg" width="400">
 
 Next up, we would like to extract the edges from the image frame. This will work, however from experimenting with the data, I found that using a Guassian Blur before extracting the edges works better. 
 So, we simply apply a Guassian Blur with a kernel size of 5 to the image, after which we run the Canny algorithm on the frame to obtain the edges. 
 For the thresholds I use 50 and 150 for low and high respectively.
 These two steps obtain the following image:\
-![Default Image][edges_image]\
+<img src="writeup/solidWhiteRight_edges.jpg" width="400">
 
 This already looks very good. We can clearly see the lane lines being detected. However, there is also a lot of noise in the background.
 Perhaps it is a good idea to now find the region of interest. For the exact procedure of how I did this, I refer to the included code.
 After finding the ROI, we obtain the following image:\
-![Default Image][roi_image]
+<img src="writeup/solidWhiteRight_roi.jpg" width="400">
 Looking good! We managed to filter out most of the background noise.
 
 Finally, we are now ready to detect actual lines. We can simply use the Hough Transform for this. Specifically, the probabilistic version. 
@@ -50,7 +50,7 @@ After a lot of parameter tweaking, I found that the following parameters worked 
 - Max line gap = 100
 
 Applying the algorithm with these parameter settings, the following image is produced:\
-![Default Image][hough_image]\
+<img src="writeup/solidWhiteRight_lines.jpg" width="400">\
 This means that we are able to detect the lane lines with a pretty good accuracy.
 The issues is still that on the left side, only part of the lane line is detected.
 Hopefully, we can use the slope information to extrapolate the lane lines later.
@@ -83,7 +83,7 @@ Specifically, I only accepted line segments with a slope such that: 0.5 <= |slop
 Finally, to make the line less jumpy between frames I also kept a 'running median' (of size 60) of both the slope and intercept of both predicted lines.
 
 Putting it all together, we get the following predicted lines:\
-![Default Image][combined]
+<img src="./test_images_output/solidYellowLeft.jpg" width="400">
 
 ### 2. Shortcomings of the pipeline
 - The biggest shortcoming of the current pipeline is that the parameters are heavily tailored to the videos (and images) that are given to me.
