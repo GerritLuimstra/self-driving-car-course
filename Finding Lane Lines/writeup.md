@@ -93,6 +93,9 @@ I have tried it on different videos and images, but very often the Hough transfo
 - Furthermore, I heavily restrict the amount of lines since I only allow certain slopes from a small range of possible slopes. 
 This results in the pipeline not being able to handle sharp turns, nor can it handle completely valid scenarios such as round abouts.
 
+- Due to the running 'median' that is used *even if no lines could be found for a specific frame*, it could happen that a car will just keep on driving straight without this being a good idea.
+This might give a false sense of 'confidence'.
+
 - For the challenge video, it is also rather apparent that a straight line fit might not be the best idea. Since this does not account for curvature in the road.
 
 - A final paint point that I can think of is that my current pipeline is not computationally cheap at all. 
