@@ -85,24 +85,31 @@ Putting it all together, we get the following predicted lines:\
 ![Default Image][combined]
 
 ### 2. Shortcomings of the pipeline
-The biggest shortcoming of the current pipeline is that the parameters are heavily tailored to the videos (and images) that are given to me.
+- The biggest shortcoming of the current pipeline is that the parameters are heavily tailored to the videos (and images) that are given to me.
 An example of this is the region of interest, which is highly dependent on where the camera is located.
 I have tried it on different videos and images, but very often the Hough transform would simply not be able to find lines and so will crash.
 
-Furthermore, I heavily restrict the amount of lines since I only allow certain slopes from a small range of possible slopes. 
+- Furthermore, I heavily restrict the amount of lines since I only allow certain slopes from a small range of possible slopes. 
 This results in the pipeline not being able to handle sharp turns, nor can it handle completely valid scenarios such as round abouts.
 
-A final paint point that I can think of is that my current pipeline is not computationally cheap at all. 
+- For the challenge video, it is also rather apparent that a straight line fit might not be the best idea. Since this does not account for curvature in the road.
+
+- A final paint point that I can think of is that my current pipeline is not computationally cheap at all. 
 The regressor model is far from fast, and so I doubt this can be used in real time.
-
-### 3. Suggest possible improvements to your pipeline
-
-The pipeline would be much better if somehow we can use some sort of segmentation algorithm (such as a neural network) to dynamically find the region of interest for us.
-This eliminates a set of hyper parameters, which is a good thing.
-
-The current line/edge detection algorithm is very unstable and so if there are a lot of cars some of them will mostly be detected as lines.
 
 There are definitely another myriad of issues that I can currently not come up with.
 
+### 3. Possible improvements to the pipeline
 
+- The pipeline would be much better if somehow we can use some sort of segmentation algorithm (such as a neural network) to dynamically find the region of interest for us.
+This eliminates a set of hyper parameters, which is a good thing.
 
+- The current line/edge detection algorithm is very unstable and so if there are a lot of cars some of them will mostly be detected as lines.
+
+- Allow the predicted lines to by higher order polynomials to more accurately model the curvature of the road.
+
+### Further output
+
+You can find the output of my pipeline in both the ```test_images_output``` and ```test_videos_output``` folder.
+Currently my pipeline is able to handle all the file rather well (partly due to parameter overfit).
+The results for the challenge file are a little unstable, but fairly 'sensible' throughout.
