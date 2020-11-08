@@ -38,7 +38,7 @@ These two steps obtain the following image:\
 This already looks very good. We can clearly see the lane lines being detected. However, there is also a lot of noise in the background.
 Perhaps it is a good idea to now find the region of interest. For the exact procedure of how I did this, I refer to the included code.
 After finding the ROI, we obtain the following image:\
-<img src="writeup/solidWhiteRight_roi.jpg" width="400">
+<img src="writeup/solidWhiteRight_roi.jpg" width="400">\
 Looking good! We managed to filter out most of the background noise.
 
 Finally, we are now ready to detect actual lines. We can simply use the Hough Transform for this. Specifically, the probabilistic version. 
