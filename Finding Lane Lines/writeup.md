@@ -4,13 +4,13 @@
 The goal of this little write up is to explain how I approached the problem of finding lane lines on a road, based on three given video files.
 I have constructed a simple pipeline that, for the given videos, rather accurately locates the road lines and paints them on the video frames.
 
-[default_image]: ./test_images/solidWhiteRight.jpg
+[default_image]: writeup/solidWhiteRight.jpg
 [default_image2]: ./test_images/solidYellowLeft.jpg
-[gray_image]: ./test_images/solidWhiteRight_gray.jpg
-[edges_image]: ./test_images/solidWhiteRight_edges.jpg
-[roi_image]: ./test_images/solidWhiteRight_roi.jpg
-[hough_image]: ./test_images/solidWhiteRight_lines.jpg
-[line_segments]: ./test_images/line_segments.png
+[gray_image]: writeup/solidWhiteRight_gray.jpg
+[edges_image]: writeup/solidWhiteRight_edges.jpg
+[roi_image]: writeup/solidWhiteRight_roi.jpg
+[hough_image]: writeup/solidWhiteRight_lines.jpg
+[line_segments]: writeup/line_segments.png
 [combined]: ./test_images_output/solidYellowLeft.jpg
 
 ---
@@ -29,11 +29,12 @@ I start off with converting the incoming image to grayscale, since apart from th
 We now obtain the following output:\
 ![Default Image][gray_image]
 
-Next up, we would like to extract the edges from the image frame. This will work, however from fiddling around with the data, I found that using a Guassian Blur before extracting the edges works better. 
+Next up, we would like to extract the edges from the image frame. This will work, however from experimenting with the data, I found that using a Guassian Blur before extracting the edges works better. 
 So, we simply apply a Guassian Blur with a kernel size of 5 to the image, after which we run the Canny algorithm on the frame to obtain the edges. 
 For the thresholds I use 50 and 150 for low and high respectively.
 These two steps obtain the following image:\
-![Default Image][edges_image]
+![Default Image][edges_image]\
+
 This already looks very good. We can clearly see the lane lines being detected. However, there is also a lot of noise in the background.
 Perhaps it is a good idea to now find the region of interest. For the exact procedure of how I did this, I refer to the included code.
 After finding the ROI, we obtain the following image:\
@@ -41,7 +42,7 @@ After finding the ROI, we obtain the following image:\
 Looking good! We managed to filter out most of the background noise.
 
 Finally, we are now ready to detect actual lines. We can simply use the Hough Transform for this. Specifically, the probabilistic version. 
-After a lot of fiddling with the parameters, I found that the following parameters worked best:
+After a lot of parameter tweaking, I found that the following parameters worked best:
 - Rho = 1
 - Theta = PI / 180
 - Threshold = 20
