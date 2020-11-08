@@ -104,7 +104,7 @@ There are definitely another myriad of issues that I can currently not come up w
 - The pipeline would be much better if somehow we can use some sort of segmentation algorithm (such as a neural network) to dynamically find the region of interest for us.
 This eliminates a set of hyper parameters, which is a good thing.
 
-- The current line/edge detection algorithm is very unstable and so if there are a lot of cars some of them will mostly be detected as lines.
+- The current line/edge detection algorithm is very unstable and so if there are a lot of cars some of them will most likely be detected as line segments.
 
 - Allow the predicted lines to by higher order polynomials to more accurately model the curvature of the road.
 
